@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-    nlpapiv2
+    speechapi
 
     
 
@@ -13,8 +13,8 @@
 
 from setuptools import setup, find_packages  # noqa: H301
 
-NAME = "cloudmersive_nlp_api_client"
-VERSION = "3.0.9"
+NAME = "cloudmersive_voicerecognition_api_client"
+VERSION = "3.0.1"
 # To install the library, run the following
 #
 # python setup.py install
@@ -36,10 +36,10 @@ REQUIRES = [
 setup(
     name=NAME,
     version=VERSION,
-    description="nlpapiv2",
+    description="speechapi",
     author_email="",
-    url="https://www.cloudmersive.com/nlp-api",
-    keywords=["Swagger", "nlpapiv2"],
+    url="https://cloudmersive.com/voice-recognition-and-speech-api",
+    keywords=["Swagger", "speechapi"],
     install_requires=REQUIRES,
     packages=find_packages(),
     include_package_data=True,
