@@ -4,7 +4,7 @@ Speech APIs enable you to recognize speech and convert it to text using advanced
 This Python package provides a native API client for [Cloudmersive Voice Recognition](https://cloudmersive.com/voice-recognition-and-speech-api)
 
 - API version: v1
-- Package version: 3.0.1
+- Package version: 4.0.1
 - Build package: io.swagger.codegen.languages.PythonClientCodegen
 
 ## Requirements.
