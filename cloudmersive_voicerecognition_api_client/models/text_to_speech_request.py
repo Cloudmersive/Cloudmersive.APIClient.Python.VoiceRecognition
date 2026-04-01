@@ -31,26 +31,59 @@ class TextToSpeechRequest(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'text': 'str',
         'format': 'str',
-        'text': 'str'
+        'language_code': 'str',
+        'gender': 'str'
     }
 
     attribute_map = {
+        'text': 'Text',
         'format': 'Format',
-        'text': 'Text'
+        'language_code': 'LanguageCode',
+        'gender': 'Gender'
     }
 
-    def __init__(self, format=None, text=None):  # noqa: E501
+    def __init__(self, text=None, format=None, language_code=None, gender=None):  # noqa: E501
         """TextToSpeechRequest - a model defined in Swagger"""  # noqa: E501
 
-        self._format = None
         self._text = None
+        self._format = None
+        self._language_code = None
+        self._gender = None
         self.discriminator = None
 
-        if format is not None:
-            self.format = format
         if text is not None:
             self.text = text
+        if format is not None:
+            self.format = format
+        if language_code is not None:
+            self.language_code = language_code
+        if gender is not None:
+            self.gender = gender
+
+    @property
+    def text(self):
+        """Gets the text of this TextToSpeechRequest.  # noqa: E501
+
+        Text to be converted to speech  # noqa: E501
+
+        :return: The text of this TextToSpeechRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._text
+
+    @text.setter
+    def text(self, text):
+        """Sets the text of this TextToSpeechRequest.
+
+        Text to be converted to speech  # noqa: E501
+
+        :param text: The text of this TextToSpeechRequest.  # noqa: E501
+        :type: str
+        """
+
+        self._text = text
 
     @property
     def format(self):
@@ -76,27 +109,50 @@ class TextToSpeechRequest(object):
         self._format = format
 
     @property
-    def text(self):
-        """Gets the text of this TextToSpeechRequest.  # noqa: E501
+    def language_code(self):
+        """Gets the language_code of this TextToSpeechRequest.  # noqa: E501
 
-        Text to be converted to speech  # noqa: E501
+        ISO 639-3 three-letter language code (e.g. eng, spa, fra, hin, ita, jpn, por, zho). Default is eng (English).  # noqa: E501
 
-        :return: The text of this TextToSpeechRequest.  # noqa: E501
+        :return: The language_code of this TextToSpeechRequest.  # noqa: E501
         :rtype: str
         """
-        return self._text
+        return self._language_code
 
-    @text.setter
-    def text(self, text):
-        """Sets the text of this TextToSpeechRequest.
+    @language_code.setter
+    def language_code(self, language_code):
+        """Sets the language_code of this TextToSpeechRequest.
 
-        Text to be converted to speech  # noqa: E501
+        ISO 639-3 three-letter language code (e.g. eng, spa, fra, hin, ita, jpn, por, zho). Default is eng (English).  # noqa: E501
 
-        :param text: The text of this TextToSpeechRequest.  # noqa: E501
+        :param language_code: The language_code of this TextToSpeechRequest.  # noqa: E501
         :type: str
         """
 
-        self._text = text
+        self._language_code = language_code
+
+    @property
+    def gender(self):
+        """Gets the gender of this TextToSpeechRequest.  # noqa: E501
+
+        Voice gender: Male or Female. Default is Female. Note: Male is not available for French and Chinese.  # noqa: E501
+
+        :return: The gender of this TextToSpeechRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._gender
+
+    @gender.setter
+    def gender(self, gender):
+        """Sets the gender of this TextToSpeechRequest.
+
+        Voice gender: Male or Female. Default is Female. Note: Male is not available for French and Chinese.  # noqa: E501
+
+        :param gender: The gender of this TextToSpeechRequest.  # noqa: E501
+        :type: str
+        """
+
+        self._gender = gender
 
     def to_dict(self):
         """Returns the model properties as a dict"""

@@ -1,6 +1,6 @@
 ﻿{
 "projectName" : "cloudmersive_voicerecognition_api_client",
   "packageName" : "cloudmersive_voicerecognition_api_client",
-  "packageVersion": "4.0.1",
+  "packageVersion": "4.1.0",
   "packageUrl": "https://cloudmersive.com/voice-recognition-and-speech-api"
 }  

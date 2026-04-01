@@ -17,3 +17,4 @@ from __future__ import absolute_import
 # import models into model package
 from cloudmersive_voicerecognition_api_client.models.speech_recognition_result import SpeechRecognitionResult
 from cloudmersive_voicerecognition_api_client.models.text_to_speech_request import TextToSpeechRequest
+from cloudmersive_voicerecognition_api_client.models.token_timestamp import TokenTimestamp

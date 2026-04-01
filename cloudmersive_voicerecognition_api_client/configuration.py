@@ -40,7 +40,7 @@ class Configuration(object):
             return
 
         # Default Base url
-        self.host = "https://api.cloudmersive.com"
+        self.host = "https://testapi.cloudmersive.com"
         # Temp file folder for downloading files
         self.temp_folder_path = None
 
@@ -248,5 +248,5 @@ class Configuration(object):
                "OS: {env}\n"\
                "Python Version: {pyversion}\n"\
                "Version of the API: v1\n"\
-               "SDK Package Version: 4.0.1".\
+               "SDK Package Version: 4.1.0".\
                format(env=sys.platform, pyversion=sys.version)

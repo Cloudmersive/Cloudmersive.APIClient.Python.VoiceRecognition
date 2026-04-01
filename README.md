@@ -4,7 +4,7 @@ Speech APIs enable you to recognize speech and convert it to text using advanced
 This Python package provides a native API client for [Cloudmersive Voice Recognition](https://cloudmersive.com/voice-recognition-and-speech-api)
 
 - API version: v1
-- Package version: 4.0.1
+- Package version: 4.1.0
 - Build package: io.swagger.codegen.languages.PythonClientCodegen
 
 ## Requirements.
@@ -59,32 +59,34 @@ configuration.api_key['Apikey'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = cloudmersive_voicerecognition_api_client.RecognizeApi(cloudmersive_voicerecognition_api_client.ApiClient(configuration))
-speech_file = '/path/to/file.txt' # file | Speech file to perform the operation on.  Common file formats such as WAV, MP3 are supported.
+language_code = '' # str | ISO 639-3 three-letter language code (e.g. eng, spa, fra). Empty for auto-detect. (optional) (default to )
+recognition_mode = 'Normal' # str | Recognition mode: Fast, Normal (default), or Advanced. Advanced is only available on Private Cloud and Managed Instance deployments. (optional) (default to Normal)
+speech_file = '/path/to/file.txt' # file |  (optional)
 
 try:
-    # Recognize audio input as text using machine learning
-    api_response = api_instance.recognize_file(speech_file)
+    # Recognize audio input as text using Advanced AI
+    api_response = api_instance.speech_recognize_file_post(language_code=language_code, recognition_mode=recognition_mode, speech_file=speech_file)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling RecognizeApi->recognize_file: %s\n" % e)
+    print("Exception when calling RecognizeApi->speech_recognize_file_post: %s\n" % e)
 
 ```
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.cloudmersive.com*
+All URIs are relative to *https://testapi.cloudmersive.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*RecognizeApi* | [**recognize_file**](docs/RecognizeApi.md#recognize_file) | **POST** /speech/recognize/file | Recognize audio input as text using machine learning
-*SpeakApi* | [**speak_post**](docs/SpeakApi.md#speak_post) | **POST** /speech/speak/text/basicVoice/{format} | Perform text-to-speech on a string
-*SpeakApi* | [**speak_text_to_speech**](docs/SpeakApi.md#speak_text_to_speech) | **POST** /speech/speak/text/voice/basic/audio | Perform text-to-speech on a string
+*RecognizeApi* | [**speech_recognize_file_post**](docs/RecognizeApi.md#speech_recognize_file_post) | **POST** /speech/recognize/file | Recognize audio input as text using Advanced AI
+*SpeakApi* | [**speech_speak_text_voice_basic_audio_post**](docs/SpeakApi.md#speech_speak_text_voice_basic_audio_post) | **POST** /speech/speak/text/voice/basic/audio | Generate audio from text using Advanced AI
 
 
 ## Documentation For Models
 
  - [SpeechRecognitionResult](docs/SpeechRecognitionResult.md)
  - [TextToSpeechRequest](docs/TextToSpeechRequest.md)
+ - [TokenTimestamp](docs/TokenTimestamp.md)
 
 
 ## Documentation For Authorization

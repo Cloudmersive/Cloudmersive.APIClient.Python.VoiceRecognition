@@ -1,18 +1,18 @@
 # cloudmersive_voicerecognition_api_client.RecognizeApi
 
-All URIs are relative to *https://api.cloudmersive.com*
+All URIs are relative to *https://testapi.cloudmersive.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**recognize_file**](RecognizeApi.md#recognize_file) | **POST** /speech/recognize/file | Recognize audio input as text using machine learning
+[**speech_recognize_file_post**](RecognizeApi.md#speech_recognize_file_post) | **POST** /speech/recognize/file | Recognize audio input as text using Advanced AI
 
 
-# **recognize_file**
-> SpeechRecognitionResult recognize_file(speech_file)
+# **speech_recognize_file_post**
+> SpeechRecognitionResult speech_recognize_file_post(language_code=language_code, recognition_mode=recognition_mode, speech_file=speech_file)
 
-Recognize audio input as text using machine learning
+Recognize audio input as text using Advanced AI
 
-Uses advanced machine learning to convert input audio, which can be mp3 or wav, into text.
+Uses advanced AI to convert input audio to text. Supports WAV, MP3, M4A, FLAC, OGG, and WMA formats. Consumes 1 API call per second of audio in Fast mode, 5 API calls per second in Normal mode, and 10 API calls per second in Advanced mode.
 
 ### Example
 ```python
@@ -30,21 +30,25 @@ configuration.api_key['Apikey'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = cloudmersive_voicerecognition_api_client.RecognizeApi(cloudmersive_voicerecognition_api_client.ApiClient(configuration))
-speech_file = '/path/to/file.txt' # file | Speech file to perform the operation on.  Common file formats such as WAV, MP3 are supported.
+language_code = '' # str | ISO 639-3 three-letter language code (e.g. eng, spa, fra). Empty for auto-detect. (optional) (default to )
+recognition_mode = 'Normal' # str | Recognition mode: Fast, Normal (default), or Advanced. Advanced is only available on Private Cloud and Managed Instance deployments. (optional) (default to Normal)
+speech_file = '/path/to/file.txt' # file |  (optional)
 
 try:
-    # Recognize audio input as text using machine learning
-    api_response = api_instance.recognize_file(speech_file)
+    # Recognize audio input as text using Advanced AI
+    api_response = api_instance.speech_recognize_file_post(language_code=language_code, recognition_mode=recognition_mode, speech_file=speech_file)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling RecognizeApi->recognize_file: %s\n" % e)
+    print("Exception when calling RecognizeApi->speech_recognize_file_post: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **speech_file** | **file**| Speech file to perform the operation on.  Common file formats such as WAV, MP3 are supported. | 
+ **language_code** | **str**| ISO 639-3 three-letter language code (e.g. eng, spa, fra). Empty for auto-detect. | [optional] [default to ]
+ **recognition_mode** | **str**| Recognition mode: Fast, Normal (default), or Advanced. Advanced is only available on Private Cloud and Managed Instance deployments. | [optional] [default to Normal]
+ **speech_file** | **file**|  | [optional] 
 
 ### Return type
 
@@ -57,7 +61,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: multipart/form-data
- - **Accept**: application/json, text/json, application/xml, text/xml
+ - **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

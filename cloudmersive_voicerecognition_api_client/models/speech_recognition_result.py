@@ -31,21 +31,26 @@ class SpeechRecognitionResult(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'text_result': 'str'
+        'text_result': 'str',
+        'timestamps': 'list[TokenTimestamp]'
     }
 
     attribute_map = {
-        'text_result': 'TextResult'
+        'text_result': 'TextResult',
+        'timestamps': 'Timestamps'
     }
 
-    def __init__(self, text_result=None):  # noqa: E501
+    def __init__(self, text_result=None, timestamps=None):  # noqa: E501
         """SpeechRecognitionResult - a model defined in Swagger"""  # noqa: E501
 
         self._text_result = None
+        self._timestamps = None
         self.discriminator = None
 
         if text_result is not None:
             self.text_result = text_result
+        if timestamps is not None:
+            self.timestamps = timestamps
 
     @property
     def text_result(self):
@@ -69,6 +74,29 @@ class SpeechRecognitionResult(object):
         """
 
         self._text_result = text_result
+
+    @property
+    def timestamps(self):
+        """Gets the timestamps of this SpeechRecognitionResult.  # noqa: E501
+
+        Token-level timestamps with character offsets into TextResult  # noqa: E501
+
+        :return: The timestamps of this SpeechRecognitionResult.  # noqa: E501
+        :rtype: list[TokenTimestamp]
+        """
+        return self._timestamps
+
+    @timestamps.setter
+    def timestamps(self, timestamps):
+        """Sets the timestamps of this SpeechRecognitionResult.
+
+        Token-level timestamps with character offsets into TextResult  # noqa: E501
+
+        :param timestamps: The timestamps of this SpeechRecognitionResult.  # noqa: E501
+        :type: list[TokenTimestamp]
+        """
+
+        self._timestamps = timestamps
 
     def to_dict(self):
         """Returns the model properties as a dict"""

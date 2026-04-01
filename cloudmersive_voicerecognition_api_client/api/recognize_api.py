@@ -33,45 +33,49 @@ class RecognizeApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def recognize_file(self, speech_file, **kwargs):  # noqa: E501
-        """Recognize audio input as text using machine learning  # noqa: E501
+    def speech_recognize_file_post(self, **kwargs):  # noqa: E501
+        """Recognize audio input as text using Advanced AI  # noqa: E501
 
-        Uses advanced machine learning to convert input audio, which can be mp3 or wav, into text.  # noqa: E501
+        Uses advanced AI to convert input audio to text. Supports WAV, MP3, M4A, FLAC, OGG, and WMA formats. Consumes 1 API call per second of audio in Fast mode, 5 API calls per second in Normal mode, and 10 API calls per second in Advanced mode.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.recognize_file(speech_file, async_req=True)
+        >>> thread = api.speech_recognize_file_post(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param file speech_file: Speech file to perform the operation on.  Common file formats such as WAV, MP3 are supported. (required)
+        :param str language_code: ISO 639-3 three-letter language code (e.g. eng, spa, fra). Empty for auto-detect.
+        :param str recognition_mode: Recognition mode: Fast, Normal (default), or Advanced. Advanced is only available on Private Cloud and Managed Instance deployments.
+        :param file speech_file:
         :return: SpeechRecognitionResult
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.recognize_file_with_http_info(speech_file, **kwargs)  # noqa: E501
+            return self.speech_recognize_file_post_with_http_info(**kwargs)  # noqa: E501
         else:
-            (data) = self.recognize_file_with_http_info(speech_file, **kwargs)  # noqa: E501
+            (data) = self.speech_recognize_file_post_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def recognize_file_with_http_info(self, speech_file, **kwargs):  # noqa: E501
-        """Recognize audio input as text using machine learning  # noqa: E501
+    def speech_recognize_file_post_with_http_info(self, **kwargs):  # noqa: E501
+        """Recognize audio input as text using Advanced AI  # noqa: E501
 
-        Uses advanced machine learning to convert input audio, which can be mp3 or wav, into text.  # noqa: E501
+        Uses advanced AI to convert input audio to text. Supports WAV, MP3, M4A, FLAC, OGG, and WMA formats. Consumes 1 API call per second of audio in Fast mode, 5 API calls per second in Normal mode, and 10 API calls per second in Advanced mode.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.recognize_file_with_http_info(speech_file, async_req=True)
+        >>> thread = api.speech_recognize_file_post_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param file speech_file: Speech file to perform the operation on.  Common file formats such as WAV, MP3 are supported. (required)
+        :param str language_code: ISO 639-3 three-letter language code (e.g. eng, spa, fra). Empty for auto-detect.
+        :param str recognition_mode: Recognition mode: Fast, Normal (default), or Advanced. Advanced is only available on Private Cloud and Managed Instance deployments.
+        :param file speech_file:
         :return: SpeechRecognitionResult
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['speech_file']  # noqa: E501
+        all_params = ['language_code', 'recognition_mode', 'speech_file']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -82,14 +86,10 @@ class RecognizeApi(object):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method recognize_file" % key
+                    " to method speech_recognize_file_post" % key
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'speech_file' is set
-        if ('speech_file' not in params or
-                params['speech_file'] is None):
-            raise ValueError("Missing the required parameter `speech_file` when calling `recognize_file`")  # noqa: E501
 
         collection_formats = {}
 
@@ -98,6 +98,10 @@ class RecognizeApi(object):
         query_params = []
 
         header_params = {}
+        if 'language_code' in params:
+            header_params['languageCode'] = params['language_code']  # noqa: E501
+        if 'recognition_mode' in params:
+            header_params['recognitionMode'] = params['recognition_mode']  # noqa: E501
 
         form_params = []
         local_var_files = {}
@@ -107,7 +111,7 @@ class RecognizeApi(object):
         body_params = None
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/json', 'application/xml', 'text/xml'])  # noqa: E501
+            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
 
         # HTTP header `Content-Type`
         header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501

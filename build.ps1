@@ -1,5 +1,11 @@
 ﻿Remove-Item –path ./cloudmersive_voicerecognition_api_client –recurse
-& java -jar swagger-codegen-cli-2.4.14.jar generate -i https://api.cloudmersive.com/swagger/api/speech -l python -c packageconfig.json
+
+Invoke-WebRequest -Uri 'https://api-console.cloudmersive.com/swagger/api/spec/speech' -OutFile '.\speech-api-swagger.json'
+(Get-Content .\speech-api-swagger.json).replace('localhost', "api.cloudmersive.com") | Set-Content .\speech-api-swagger.json
+(Get-Content .\speech-api-swagger.json).replace('"http"', '"https"') | Set-Content .\speech-api-swagger.json
+
+
+& java -jar swagger-codegen-cli-2.4.14.jar generate -i .\speech-api-swagger.json -l python -c packageconfig.json
 #(Get-Content ./client/package.json).replace('v1', '1.0.1') | Set-Content ./client/package.json
 
 $extrasetup = (Get-Content ./extrasetup.py) -join "`n"

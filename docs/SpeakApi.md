@@ -1,19 +1,18 @@
 # cloudmersive_voicerecognition_api_client.SpeakApi
 
-All URIs are relative to *https://api.cloudmersive.com*
+All URIs are relative to *https://testapi.cloudmersive.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**speak_post**](SpeakApi.md#speak_post) | **POST** /speech/speak/text/basicVoice/{format} | Perform text-to-speech on a string
-[**speak_text_to_speech**](SpeakApi.md#speak_text_to_speech) | **POST** /speech/speak/text/voice/basic/audio | Perform text-to-speech on a string
+[**speech_speak_text_voice_basic_audio_post**](SpeakApi.md#speech_speak_text_voice_basic_audio_post) | **POST** /speech/speak/text/voice/basic/audio | Generate audio from text using Advanced AI
 
 
-# **speak_post**
-> object speak_post(format, text)
+# **speech_speak_text_voice_basic_audio_post**
+> str speech_speak_text_voice_basic_audio_post(body=body)
 
-Perform text-to-speech on a string
+Generate audio from text using Advanced AI
 
-Takes as input a string and a file format (mp3 or wav) and outputs a wave form in the appropriate format.
+Converts text to speech using advanced AI. Supports English, Spanish, French, Hindi, Italian, Japanese, Portuguese, and Chinese. Specify language with LanguageCode (ISO 639-3, default: eng) and gender with Gender (Male or Female, default: Female). Output format is controlled by the Format field (mp3 or wav, default: mp3). Consumes 1 API call per second of generated audio.
 
 ### Example
 ```python
@@ -31,27 +30,25 @@ configuration.api_key['Apikey'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = cloudmersive_voicerecognition_api_client.SpeakApi(cloudmersive_voicerecognition_api_client.ApiClient(configuration))
-format = 'format_example' # str | File format to generate response in; possible values are \"mp3\" or \"wav\"
-text = 'text_example' # str | The text you would like to conver to speech.  Be sure to surround with quotes, e.g. \"The quick brown fox jumps over the lazy dog.\"
+body = cloudmersive_voicerecognition_api_client.TextToSpeechRequest() # TextToSpeechRequest | String input request (optional)
 
 try:
-    # Perform text-to-speech on a string
-    api_response = api_instance.speak_post(format, text)
+    # Generate audio from text using Advanced AI
+    api_response = api_instance.speech_speak_text_voice_basic_audio_post(body=body)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling SpeakApi->speak_post: %s\n" % e)
+    print("Exception when calling SpeakApi->speech_speak_text_voice_basic_audio_post: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **format** | **str**| File format to generate response in; possible values are \&quot;mp3\&quot; or \&quot;wav\&quot; | 
- **text** | **str**| The text you would like to conver to speech.  Be sure to surround with quotes, e.g. \&quot;The quick brown fox jumps over the lazy dog.\&quot; | 
+ **body** | [**TextToSpeechRequest**](TextToSpeechRequest.md)| String input request | [optional] 
 
 ### Return type
 
-**object**
+**str**
 
 ### Authorization
 
@@ -59,62 +56,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
+ - **Content-Type**: application/json, text/json, application/*+json
  - **Accept**: application/octet-stream
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **speak_text_to_speech**
-> object speak_text_to_speech(req_config)
-
-Perform text-to-speech on a string
-
-Takes as input a string and a file format (mp3 or wav) and outputs a wave form in the appropriate format.
-
-### Example
-```python
-from __future__ import print_function
-import time
-import cloudmersive_voicerecognition_api_client
-from cloudmersive_voicerecognition_api_client.rest import ApiException
-from pprint import pprint
-
-# Configure API key authorization: Apikey
-configuration = cloudmersive_voicerecognition_api_client.Configuration()
-configuration.api_key['Apikey'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Apikey'] = 'Bearer'
-
-# create an instance of the API class
-api_instance = cloudmersive_voicerecognition_api_client.SpeakApi(cloudmersive_voicerecognition_api_client.ApiClient(configuration))
-req_config = cloudmersive_voicerecognition_api_client.TextToSpeechRequest() # TextToSpeechRequest | String input request
-
-try:
-    # Perform text-to-speech on a string
-    api_response = api_instance.speak_text_to_speech(req_config)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling SpeakApi->speak_text_to_speech: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **req_config** | [**TextToSpeechRequest**](TextToSpeechRequest.md)| String input request | 
-
-### Return type
-
-**object**
-
-### Authorization
-
-[Apikey](../README.md#Apikey)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
- - **Accept**: application/json, text/json, application/xml, text/xml
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
